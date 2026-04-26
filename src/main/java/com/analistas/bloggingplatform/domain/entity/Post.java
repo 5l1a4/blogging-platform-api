@@ -1,17 +1,13 @@
 package com.analistas.bloggingplatform.domain.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "post")
 public class Post {
@@ -30,6 +26,12 @@ public class Post {
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
+
+    public Post(String title, String content, String subtitle) {
+        this.title = title;
+        this.content = content;
+        this.subtitle = subtitle;
+    }
 
     @PrePersist
     protected void onCreate(){
