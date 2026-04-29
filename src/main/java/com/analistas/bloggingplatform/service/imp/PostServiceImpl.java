@@ -4,6 +4,7 @@ import com.analistas.bloggingplatform.domain.dto.PostRequest;
 import com.analistas.bloggingplatform.domain.dto.PostResponse;
 import com.analistas.bloggingplatform.domain.entity.Post;
 import com.analistas.bloggingplatform.domain.mapper.PostMapper;
+import com.analistas.bloggingplatform.exception.EntityNotFound;
 import com.analistas.bloggingplatform.repository.PostRepository;
 import com.analistas.bloggingplatform.service.PostService;
 import org.springframework.stereotype.Service;
@@ -24,17 +25,18 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostResponse> getPosts() {
-        List<Post> posts = postRepo.findAll();
+        /*List<Post> posts = postRepo.findAll();
         List<PostResponse> postReponses = new ArrayList<>();
         posts.forEach(post -> {
             postReponses.add(postMapper.toResponse(post));
-        });
-        return postReponses;
+        });*/
+        return postRepo.findAll().stream().map(postMapper::toResponse).toList();
+
     }
 
     @Override
     public PostResponse getPostById(Long id) {
-        Post post = postRepo.findById(id).orElseThrow(() -> new RuntimeException("post not found"));
+        Post post = postRepo.findById(id).orElseThrow(() -> new EntityNotFound("entity not found"));
         return postMapper.toResponse(post);
     }
 
@@ -46,7 +48,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public PostResponse updatePost(Long id, PostRequest postRequest) {
-        Post post = postRepo.findById(id).orElseThrow();
+        Post post = postRepo.findById(id).orElseThrow(() -> new EntityNotFound("entity not found"));
         post.setTitle(postRequest.getTitle());
         post.setSubtitle(postRequest.getSubtitle());
         post.setContent(postRequest.getContent());
@@ -55,7 +57,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void deletePost(Long id) {
-        Post post = postRepo.findById(id).orElseThrow(() -> new RuntimeException("post not found"));
+        Post post = postRepo.findById(id).orElseThrow(() -> new EntityNotFound("entity not found"));
         postRepo.delete(post);
     }
 }
