@@ -1,10 +1,12 @@
 package com.analistas.bloggingplatform.domain.entity;
 
+import com.analistas.bloggingplatform.domain.dto.PostResponse;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 
 @Getter
 @Setter
@@ -18,6 +20,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(length = 100)
     private String name;
+
+    private String description;
+
 }

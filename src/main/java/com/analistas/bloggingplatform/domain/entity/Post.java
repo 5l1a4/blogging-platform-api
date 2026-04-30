@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,6 +26,10 @@ public class Post {
     private String subtitle;
 
     private Boolean status;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Category category;
+
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
