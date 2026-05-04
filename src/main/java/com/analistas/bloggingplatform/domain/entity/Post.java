@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @Setter
@@ -27,6 +26,7 @@ public class Post {
 
     private Boolean status;
 
+    @JoinColumn(name = "category_id")
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
@@ -34,10 +34,11 @@ public class Post {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    public Post(String title, String content, String subtitle) {
+    public Post(String title, String content, String subtitle, Category category) {
         this.title = title;
         this.content = content;
         this.subtitle = subtitle;
+        this.category = category;
     }
 
     @PrePersist

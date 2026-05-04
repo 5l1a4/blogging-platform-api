@@ -1,5 +1,6 @@
 package com.analistas.bloggingplatform.domain.dto;
 
+import com.analistas.bloggingplatform.domain.entity.Category;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
@@ -23,5 +24,7 @@ public class PostRequest {
 
     @Size(min = 4, max = 50)
     private String subtitle;
+
+    private Long idCategory;
 
 }
