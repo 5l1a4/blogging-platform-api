@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Getter
 @Setter
@@ -30,15 +31,23 @@ public class Post {
     @ManyToOne(fetch = FetchType.LAZY)
     private Category category;
 
+    @JoinTable(name = "post_tag", joinColumns = @JoinColumn(name = "post_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    @ManyToMany(fetch = FetchType.LAZY)
+    private List<Tag> tags;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comment> comments;
 
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
-    public Post(String title, String content, String subtitle, Category category) {
+    public Post(String title, String content, String subtitle, Category category, List<Tag> tags) {
         this.title = title;
         this.content = content;
         this.subtitle = subtitle;
         this.category = category;
+        this.tags = tags;
     }
 
     @PrePersist

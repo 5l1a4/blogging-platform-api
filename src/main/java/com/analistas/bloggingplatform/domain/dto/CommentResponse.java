@@ -1,27 +1,21 @@
 package com.analistas.bloggingplatform.domain.dto;
 
-import com.analistas.bloggingplatform.domain.entity.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostResponse {
+public class CommentResponse {
 
-    private String title;
+    private String text;
 
-    private String content;
-
-    private String subtitle;
+    private String author;
 
     private LocalDateTime createdAt;
 
-    private String nameCategory;
-
-    private List<String> nameTags;
+    private String namePost;
 }

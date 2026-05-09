@@ -3,17 +3,21 @@ package com.analistas.bloggingplatform.domain.mapper;
 import com.analistas.bloggingplatform.domain.dto.PostRequest;
 import com.analistas.bloggingplatform.domain.dto.PostResponse;
 import com.analistas.bloggingplatform.domain.entity.Post;
+import com.analistas.bloggingplatform.domain.entity.Tag;
 import com.analistas.bloggingplatform.exception.EntityNotFound;
 import com.analistas.bloggingplatform.repository.CategoryRepository;
+import com.analistas.bloggingplatform.repository.TagRepository;
 import org.springframework.stereotype.Component;
 
 @Component
 public class PostMapper {
 
     private final CategoryRepository cateRepo;
+    private final TagRepository tagRepo;
 
-    public PostMapper(CategoryRepository cateRepo) {
+    public PostMapper(CategoryRepository cateRepo,  TagRepository tagRepo) {
         this.cateRepo = cateRepo;
+        this.tagRepo = tagRepo;
     }
 
     public PostResponse toResponse(Post post){
@@ -22,7 +26,8 @@ public class PostMapper {
                 post.getContent(),
                 post.getSubtitle(),
                 post.getCreatedAt(),
-                post.getCategory().getName()
+                post.getCategory().getName(),
+                post.getTags().stream().map(Tag::getName).toList()
         );
     }
 
@@ -31,7 +36,10 @@ public class PostMapper {
                 request.getTitle(),
                 request.getContent(),
                 request.getSubtitle(),
-                cateRepo.findById(request.getIdCategory()).orElseThrow(() -> new EntityNotFound("Category not found"))
+                cateRepo.findById(request.getIdCategory()).orElseThrow(() -> new EntityNotFound("Category not found")),
+                request.getListIdTag().stream()
+                        .map(id -> tagRepo.findById(id).orElseThrow(() -> new EntityNotFound("Tag not found")))
+                        .toList()
         );
     }
 

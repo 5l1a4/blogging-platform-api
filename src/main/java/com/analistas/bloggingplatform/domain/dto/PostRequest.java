@@ -1,12 +1,14 @@
 package com.analistas.bloggingplatform.domain.dto;
 
-import com.analistas.bloggingplatform.domain.entity.Category;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,6 +27,10 @@ public class PostRequest {
     @Size(min = 4, max = 50)
     private String subtitle;
 
+    @Positive
     private Long idCategory;
+
+    @Positive
+    private List<Long> ListIdTag;
 
 }
