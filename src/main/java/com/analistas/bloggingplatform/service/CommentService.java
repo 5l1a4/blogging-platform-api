@@ -9,12 +9,12 @@ public interface CommentService {
 
     List<CommentResponse> getCommentsByPostId(Long id);
 
-    CommentResponse getCommentById(Long id);
+    CommentResponse getCommentById(Long postId, Long id);
 
-    CommentResponse createComment(CommentRequest commentRequest, Long postId);
+    CommentResponse createComment(Long postId, CommentRequest commentRequest);
 
-    CommentResponse updateComment(Long id, CommentRequest commentRequest);
+    CommentResponse updateComment(Long postId, Long id, CommentRequest commentRequest);
 
-    void deleteCommentById(Long id);
+    void deleteCommentById(Long postId, Long id);
 
 }

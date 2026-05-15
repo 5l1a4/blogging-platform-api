@@ -31,4 +31,9 @@ public class GlobalExceptionHandler{
         problemDetail.setProperty("errors", listProblemsMap);
         return problemDetail;
     }
+
+    @ExceptionHandler(Exception.class)
+    public ProblemDetail getGenericException(Exception exception) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error");
+    }
 }

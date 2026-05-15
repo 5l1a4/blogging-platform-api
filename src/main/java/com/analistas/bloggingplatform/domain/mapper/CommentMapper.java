@@ -17,10 +17,11 @@ public class CommentMapper {
 
     public CommentResponse toResponse(Comment comment){
         return new CommentResponse(
+                comment.getId(),
                 comment.getText(),
                 comment.getAuthor(),
                 comment.getCreatedAt(),
-                comment.getPost().getTitle()
+                comment.getPost().getId()
         );
     }
 }
