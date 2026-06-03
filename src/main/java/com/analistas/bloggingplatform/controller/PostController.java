@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -21,9 +22,14 @@ public class PostController {
     }
 
     @GetMapping
-    public ResponseEntity<List<PostResponse>> getAllPosts() {
-        List<PostResponse> postResponses = postService.getPosts();
-        return ResponseEntity.ok(postResponses);
+    public ResponseEntity<List<PostResponse>> getAllPosts(@RequestParam(required = false) String term) {
+        List<PostResponse> postResponses;
+        if (term != null) {
+            postResponses = postService.searchPostByTerm(term);
+        }else{
+            postResponses = postService.getPosts();
+        }
+        return new ResponseEntity<>(postResponses, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")

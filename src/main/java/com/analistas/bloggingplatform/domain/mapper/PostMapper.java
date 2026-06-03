@@ -26,6 +26,7 @@ public class PostMapper {
                 post.getContent(),
                 post.getSubtitle(),
                 post.getCreatedAt(),
+                post.getUpdateAt(),
                 post.getCategory().getName(),
                 post.getTags().stream().map(Tag::getName).toList()
         );

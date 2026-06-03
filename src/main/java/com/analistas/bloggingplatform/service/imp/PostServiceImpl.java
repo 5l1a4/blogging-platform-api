@@ -56,6 +56,11 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<PostResponse> searchPostByTerm(String term) {
+        return postRepo.searchPostByTerm(term).stream().map(postMapper::toResponse).toList();
+    }
+
+    @Override
     public void deletePost(Long id) {
         Post post = postRepo.findById(id).orElseThrow(() -> new EntityNotFound("entity not found"));
         postRepo.delete(post);

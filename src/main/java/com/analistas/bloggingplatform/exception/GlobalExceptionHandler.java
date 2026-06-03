@@ -34,6 +34,9 @@ public class GlobalExceptionHandler{
 
     @ExceptionHandler(Exception.class)
     public ProblemDetail getGenericException(Exception exception) {
+        exception.printStackTrace();
         return ProblemDetail.forStatusAndDetail(HttpStatus.INTERNAL_SERVER_ERROR, "Internal server error");
     }
+
+
 }

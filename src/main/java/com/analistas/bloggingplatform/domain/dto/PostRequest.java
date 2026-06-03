@@ -30,7 +30,6 @@ public class PostRequest {
     @Positive
     private Long idCategory;
 
-    @Positive
     private List<Long> ListIdTag;
 
 }

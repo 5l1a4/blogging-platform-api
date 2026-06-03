@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -42,6 +43,9 @@ public class Post {
     @Column(updatable = false)
     private LocalDateTime createdAt;
 
+    @Column
+    private LocalDateTime updateAt;
+
     public Post(String title, String content, String subtitle, Category category, List<Tag> tags) {
         this.title = title;
         this.content = content;
@@ -54,5 +58,11 @@ public class Post {
     protected void onCreate(){
         this.createdAt = LocalDateTime.now();
         this.status = Boolean.TRUE;
+        this.updateAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate(){
+        this.updateAt = LocalDateTime.now();
     }
 }

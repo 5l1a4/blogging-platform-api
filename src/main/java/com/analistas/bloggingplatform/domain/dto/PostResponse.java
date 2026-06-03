@@ -1,6 +1,5 @@
 package com.analistas.bloggingplatform.domain.dto;
 
-import com.analistas.bloggingplatform.domain.entity.Tag;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,6 +19,8 @@ public class PostResponse {
     private String subtitle;
 
     private LocalDateTime createdAt;
+
+    private LocalDateTime updateAt;
 
     private String nameCategory;
 
