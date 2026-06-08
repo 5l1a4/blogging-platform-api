@@ -1,7 +1,6 @@
 # blogging-platform-api
 
 API RESTful para un blog personal con soporte para publicaciones, categorías, etiquetas y comentarios.
- 
 
 
 ## Tecnologías
@@ -45,23 +44,24 @@ com.analistas.bloggingplatform
 
 ### Posts `/api/posts`
 
-| Método | Endpoint | Descripción | Status |
-|--------|----------|-------------|--------|
+| Método | Endpoint | Descripción            | Status |
+|--------|----------|------------------------|--------|
 | GET | `/api/posts` | Listar todos los posts | 200 |
-| GET | `/api/posts/{id}` | Obtener post por id | 200 |
-| POST | `/api/posts` | Crear post | 201 |
-| PUT | `/api/posts/{id}` | Actualizar post | 200 |
-| DELETE | `/api/posts/{id}` | Eliminar post | 204 |
+| GET | `/api/posts/{id}` | Obtener post por id    | 200 |
+| POST | `/api/posts` | Crear post             | 201 |
+| POST | `GET /api/posts?term=` | Filtrar por contenido  | 201 |
+| PUT | `/api/posts/{id}` | Actualizar post        | 200 |
+| DELETE | `/api/posts/{id}` | Eliminar post          | 204 |
 
 ### Comments `/api/posts/{postId}/comments`
 
 | Método | Endpoint | Descripción | Status |
 |--------|----------|-------------|--------|
-| GET | `/api/posts/{postId}/comments` | Listar comentarios de un post | 200 |
-| GET | `/api/posts/{postId}/comments/{id}` | Obtener comentario por id | 200 |
-| POST | `/api/posts/{postId}/comments` | Crear comentario | 201 |
-| PUT | `/api/posts/{postId}/comments/{id}` | Actualizar comentario | 200 |
-| DELETE | `/api/posts/{postId}/comments/{id}` | Eliminar comentario | 204 |
+| GET | `/api/posts/{postId}/comments` | Listar comentarios de un post | 200    |
+| GET | `/api/posts/{postId}/comments/{id}` | Obtener comentario por id | 200    |
+| POST | `/api/posts/{postId}/comments` | Crear comentario | 200    |
+| PUT | `/api/posts/{postId}/comments/{id}` | Actualizar comentario | 200    |
+| DELETE | `/api/posts/{postId}/comments/{id}` | Eliminar comentario | 204    |
  
 ---
 
