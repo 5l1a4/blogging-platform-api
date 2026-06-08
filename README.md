@@ -2,6 +2,7 @@
 
 API RESTful para un blog personal con soporte para publicaciones, categorías, etiquetas y comentarios.
 
+https://roadmap.sh/projects/blogging-platform-api
 
 ## Tecnologías
 
@@ -46,12 +47,12 @@ com.analistas.bloggingplatform
 
 | Método | Endpoint | Descripción            | Status |
 |--------|----------|------------------------|--------|
-| GET | `/api/posts` | Listar todos los posts | 200 |
-| GET | `/api/posts/{id}` | Obtener post por id    | 200 |
-| POST | `/api/posts` | Crear post             | 201 |
-| POST | `GET /api/posts?term=` | Filtrar por contenido  | 201 |
-| PUT | `/api/posts/{id}` | Actualizar post        | 200 |
-| DELETE | `/api/posts/{id}` | Eliminar post          | 204 |
+| GET | `/api/posts` | Listar todos los posts | 200    |
+| GET | `/api/posts/{id}` | Obtener post por id    | 200    |
+| POST | `/api/posts` | Crear post             | 201    |
+| POST | `GET /api/posts?term=` | Filtrar por contenido  | 200    |
+| PUT | `/api/posts/{id}` | Actualizar post        | 200    |
+| DELETE | `/api/posts/{id}` | Eliminar post          | 204    |
 
 ### Comments `/api/posts/{postId}/comments`
 
